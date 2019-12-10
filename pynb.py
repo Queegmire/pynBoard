@@ -19,9 +19,10 @@ cache_file = 'pb.json'
 def make_request(endpoint, params=None):
     params = params if params else {}
     all_params = {**params, **common}
-    param_string = '&'.join(f'{name}={val}' for name, val in all_params.items())
-    path = f'{baseURL}{endpoint}?{param_string}'
-    reponse = get(path)
+
+    path = f'{baseURL}{endpoint}'
+    response = get(path, all_params)
+
     code = response.status_code
     if code != 200:
         print(dir(response))
